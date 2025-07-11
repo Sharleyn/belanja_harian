@@ -8,6 +8,9 @@
      <.link patch={~p"/perbelanjaan/#{@perbelanjaan}/bmi_calculator"} phx-click={JS.push_focus()}>
       <.button>Calculate BMI</.button>
     </.link>
+     <.link patch={~p"/perbelanjaan/#{@perbelanjaan}/ic_info"} phx-click={JS.push_focus()}>
+      <.button>IC Info</.button>
+    </.link>
   </:actions>
 </.header>
 
@@ -40,6 +43,23 @@
   <.live_component
     module={BelanjaHarianWeb.PerbelanjaanLive.BmiCalculatorComponent}
     id="bmi-calculator"
+    title={@page_title}
+    action={@live_action}
+    perbelanjaan={@perbelanjaan}
+    patch={~p"/perbelanjaan/#{@perbelanjaan}"}
+  />
+</.modal>
+
+
+<.modal
+  :if={@live_action == :ic_info}
+  id="ic-info-modal"
+  show
+  on_cancel={JS.patch(~p"/perbelanjaan/#{@perbelanjaan}")}
+>
+  <.live_component
+    module={BelanjaHarianWeb.PerbelanjaanLive.ICInfoComponent}
+    id="ic-info"
     title={@page_title}
     action={@live_action}
     perbelanjaan={@perbelanjaan}

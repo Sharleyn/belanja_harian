@@ -26,6 +26,7 @@ defmodule BelanjaHarianWeb.Router do
     live "/perbelanjaan/:id", PerbelanjaanLive.Show, :show
     live "/perbelanjaan/:id/show/edit", PerbelanjaanLive.Show, :edit
     live "/perbelanjaan/:id/bmi_calculator", PerbelanjaanLive.Show, :bmi_calculator
+    live "/perbelanjaan/:id/ic_info", PerbelanjaanLive.Show, :ic_info
 
   end
 

@@ -19,4 +19,5 @@ defmodule BelanjaHarianWeb.PerbelanjaanLive.Show do
   defp page_title(:show), do: "Show Perbelanjaan"
   defp page_title(:edit), do: "Edit Perbelanjaan"
   defp page_title(:bmi_calculator), do: "BMI Calculator"
+  defp page_title(:ic_info), do: "IC Info"
 end
