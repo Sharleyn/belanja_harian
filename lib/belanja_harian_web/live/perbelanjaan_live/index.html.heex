@@ -1,0 +1,44 @@
+<.header>
+  Listing Perbelanjaan
+  <:actions>
+    <.link patch={~p"/perbelanjaan/new"}>
+      <.button>New Perbelanjaan</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="perbelanjaan"
+  rows={@streams.perbelanjaan_collection}
+  row_click={fn {_id, perbelanjaan} -> JS.navigate(~p"/perbelanjaan/#{perbelanjaan}") end}
+>
+  <:col :let={{_id, perbelanjaan}} label="Tajuk">{perbelanjaan.tajuk}</:col>
+  <:col :let={{_id, perbelanjaan}} label="Kategori">{perbelanjaan.kategori}</:col>
+  <:col :let={{_id, perbelanjaan}} label="Jumlah">{perbelanjaan.jumlah}</:col>
+  <:col :let={{_id, perbelanjaan}} label="Tarikh">{perbelanjaan.tarikh}</:col>
+  <:action :let={{_id, perbelanjaan}}>
+    <div class="sr-only">
+      <.link navigate={~p"/perbelanjaan/#{perbelanjaan}"}>Show</.link>
+    </div>
+    <.link patch={~p"/perbelanjaan/#{perbelanjaan}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, perbelanjaan}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: perbelanjaan.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="perbelanjaan-modal" show on_cancel={JS.patch(~p"/perbelanjaan")}>
+  <.live_component
+    module={BelanjaHarianWeb.PerbelanjaanLive.FormComponent}
+    id={@perbelanjaan.id || :new}
+    title={@page_title}
+    action={@live_action}
+    perbelanjaan={@perbelanjaan}
+    patch={~p"/perbelanjaan"}
+  />
+</.modal>

@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :belanja_harian, BelanjaHarian.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "123456789",
   hostname: "localhost",
   database: "belanja_harian_dev",
   stacktrace: true,

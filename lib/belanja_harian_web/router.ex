@@ -18,6 +18,15 @@ defmodule BelanjaHarianWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/perbelanjaan", PerbelanjaanLive.Index, :index
+    live "/perbelanjaan/new", PerbelanjaanLive.Index, :new
+    live "/perbelanjaan/:id/edit", PerbelanjaanLive.Index, :edit
+
+    live "/perbelanjaan/:id", PerbelanjaanLive.Show, :show
+    live "/perbelanjaan/:id/show/edit", PerbelanjaanLive.Show, :edit
+    live "/perbelanjaan/:id/bmi_calculator", PerbelanjaanLive.Show, :bmi_calculator
+
   end
 
   # Other scopes may use custom stacks.
